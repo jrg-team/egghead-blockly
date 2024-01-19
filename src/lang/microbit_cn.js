@@ -1,0 +1,28 @@
+'use strict';
+goog.provide('Blockly.Msg.fr');
+goog.require('Blockly.Msg');
+// micro:bit
+Blockly.Msg.MICROBIT_ANALOG_WRITE_TOOLTIP = "在指定的引脚上发送一个介于0和1023之间的值";
+Blockly.Msg.MICROBIT_SHOW_STRING = "滚动";
+Blockly.Msg.MICROBIT_SHOW_STRING_TOOLTIP = "在内置矩阵上滚动指定的文本";
+Blockly.Msg.MICROBIT_SHOW_ICON_TOOLTIP = "显示预定义的符号：\n一个小心心，一个大心心，一个微笑，一个悲伤的脸和一个棋盘";
+Blockly.Msg.MICROBIT_SET_PIXEL = "点亮LED";
+Blockly.Msg.MICROBIT_CLEAR = "关闭所有LED";
+Blockly.Msg.MICROBIT_SHOW = "显示所有LED";
+Blockly.Msg.MICROBIT_SHOW_TOOLTIP = "在矩阵中显示所有LED";
+Blockly.Msg.MICROBIT_BT = "按钮";
+Blockly.Msg.MICROBIT_IS_PRESSED = "被按下";
+Blockly.Msg.MICROBIT_ACC = "加速度";
+Blockly.Msg.MICROBIT_ACC_TOOLTIP = "检测箱子是否在三个轴上移动";
+Blockly.Msg.MICROBIT_COMPASS = "指南针方向";
+Blockly.Msg.MICROBIT_COMPASS_TOOLTIP = "检测地球的磁场，以确定地图指示的方向（0 = 北）";
+Blockly.Msg.MICROBIT_CAL_COMPASS = "校准指南针";
+Blockly.Msg.MICROBIT_CAL_COMPASS_TOOLTIP = "校准指南针，将地图倾斜以将点移动到中心，直到填满整个屏幕";
+Blockly.Msg.MICROBIT_TEMP = "板上温度";
+Blockly.Msg.MICROBIT_TEMP_TOOLTIP = "返回板的温度（与实际温度略有不同）";
+Blockly.Msg.MICROBIT_LIGHT = "亮度";
+Blockly.Msg.MICROBIT_LIGHT_TOOLTIP = "通过矩阵的LED检测环境亮度";
+Blockly.Msg.MICROBIT_RADIO = "通过无线电发送";
+Blockly.Msg.MICROBIT_RADIO_TOOLTIP = "通过无线电波发送信息";
+Blockly.Msg.MICROBIT_RADIO_RECEPT = "如果接收到的数据是";
+Blockly.Msg.MICROBIT_RADIO_RECEPT_TOOLTIP = "验证是否通过无线电波接收到数据，并执行相应的操作";

@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #2d2d64;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+select, input {
+  vertical-align: bottom;
+  border: none;
+}
