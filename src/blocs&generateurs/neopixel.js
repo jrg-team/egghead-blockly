@@ -325,7 +325,7 @@ Blockly.Python["pixel_setbrightness"]=function(){return""};
 };
 
   Blockly.Blocks["MatrixLED_WS2812B_draw"] = {  init: function() {
-       this.appendDummyInput().appendField('  ').appendField(' 0').appendField('    1').appendField('   2').appendField('    3').appendField('   4').appendField('    5').appendField('   6').appendField('    7');
+       this.appendDummyInput().appendField('  ').appendField(' 0').appendField('    1').appendField('   2').appendField('    3').appendField('   4').appendField('   5').appendField('   6').appendField('    7');
       this.appendDummyInput().appendField('0 ')
           .appendField(new Blockly.FieldColour('rgb(255, 255, 255)'), 'Pixel0')
           .appendField(new Blockly.FieldColour('rgb(255, 255, 255)'), 'Pixel1')

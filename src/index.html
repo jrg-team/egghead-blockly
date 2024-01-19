@@ -6,6 +6,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title> EggHead Blockly </title>
   <!-- JavaScript -->
+  <script src="js/jquery.min.2.1.3.js" onload="window.$ = window.jQuery"></script>
+  <script src="js/alpinejs.min.js" defer></script>
+  <script src="js/handlers/store.js"></script>
+  <script src="js/handlers/arduino.js"></script>
   <script type="text/javascript" src="js/blockly.min.js"></script>
   <script type="text/javascript" src="js/type.js"></script>
   <script type="text/javascript" src="js/types.js"></script>
@@ -14,7 +18,6 @@
   <script type="text/javascript" src="js/generate_cpp.js"></script>
   <script type="text/javascript" src="js/blocklino.js"></script>
   <script type="text/javascript" src="js/boards.js"></script>
-  <script src="js/jquery.min.2.1.3.js" onload="window.$ = window.jQuery"></script>
   <script type="text/javascript" src="js/bootstrap.toggle.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.3.3.6.js"></script>
   <script type="text/javascript" src="js/prettify.min.js"></script>
@@ -86,7 +89,7 @@
   <link rel="stylesheet" type="text/css" href="css/prettify.min.css" />
 </head>
 
-<body onload="BlocklyDuino.init()">
+<body onload="BlocklyDuino.init()" x-data="{ app: window.currentRunningPlatform === 'desktop' }">
   <div class="loading"></div>
   <div id="toptitle">
     <div id="title">
@@ -137,6 +140,7 @@
       <button id="btn_redo" class="btn btn-arduino-rect">
         <span class="fa fa-repeat"> </span>
       </button>
+      <button class="btn" x-show="app" @click="listDevices">选择设备</button>
     </div>
     <div id="btn_group" class="btn-group" role="group">
       <!--	<button id="btn_about" class="btn btn-arduino-rect" data-toggle="modal" data-target="#aboutModal"><span class="fa fa-question"></span> </button> -->
@@ -259,53 +263,6 @@
               <tbody id="includedContent"></tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- CARD modal -->
-  <div class="modal fade" id="card">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&#215;</span></button>
-          <span class="fa fa-microchip fa-2x" class="modal-title" id="cardLabel"></span>
-        </div>
-        <div class="modal-body">
-          <div class="arduino_card_mini_picture_div" style="height: 516px">
-            <img id="arduino_card_mini_picture" style="max-width: 100%" />
-          </div>
-          <select size="14" multiple id="pinout" onchange="BlocklyDuino.cardPicture_change();">
-            <optgroup label="C / C++">
-              <option value="OttoESP">ESP8266</option>
-              <option value="nanooptiboot">♾ Nano</option>
-              <option value="nano">♾ Nano Old </option>s
-              <option value="Ottoky">ESP32</option>
-              <option value="MRTnode">MRTnode ESP32</option>
-              <option value="mrtduino">MRTduino</option>
-              <option value="uno_bt">ZUM BT-328</option>
-              <option value="uno">♾ Uno</option>
-              <option value="nona4809">♾ Nano Every</option>
-              <option value="leonardo">♾ Leonardo</option>
-              <option value="micro">♾ Micro</option>
-              <option value="mega">♾ Mega</option>
-              <option value="mkrwifi1010">♾ MKR WiFi</option>
-            </optgroup>
-          </select>
-          <br><br>
-          <div id="infoboard"></div>
-          <!-- <div class="alert alert-warning" role="alert" id="warning"> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- USB modal -->
-  <div class="modal fade" id="usb">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <span id="aboutusbLabel"></span>
         </div>
       </div>
     </div>
