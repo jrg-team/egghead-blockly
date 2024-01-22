@@ -7,7 +7,7 @@ body {
   display: flex;
   height: 100vh;
   flex-direction: column;
-  background-color: #2d2d64;
+  background-color: #016D70;
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
@@ -15,4 +15,8 @@ body {
 select, input {
   vertical-align: bottom;
   border: none;
+}
+
+.color-font {
+  color: #016D70;
 }

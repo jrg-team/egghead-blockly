@@ -79,17 +79,14 @@ BlocklyDuino.loadFile = function () {
       urlFile,
       function (data) {
         BlocklyDuino.loadBlocks(data);
+        BlocklyDuino.workspace.scrollCenter();
       },
       "text"
     );
   } else {
     BlocklyDuino.loadBlocks();
+    BlocklyDuino.workspace.scrollCenter();
   }
-};
-BlocklyDuino.save_com = function () {
-  $("#portserie").blur();
-  var com = $("#portserie").val();
-  window.localStorage.com = com;
 };
 BlocklyDuino.renderArduinoCodePreview = function () {
   var prog = window.localStorage.prog;
@@ -462,11 +459,7 @@ BlocklyDuino.bindFunctions = function () {
     });
     $("#btn_saveXML").on("click", BlocklyDuino.saveXmlFile);
     $("#btn_saveino").on("click", function () {
-      if (window.localStorage.prog == "arduino") {
-        BlocklyDuino.saveino();
-      } else {
-        BlocklyDuino.savepy();
-      }
+      BlocklyDuino.saveino();
     });
   }
 };
@@ -845,29 +838,11 @@ BlocklyDuino.cardPicture_change = function () {
   else document.getElementById("infoboard").innerHTML = "";
 };
 BlocklyDuino.saveino = function () {
-  var code = $("#pre_previewArduino").text();
-  var datenow = Date.now();
-  var projectname = document.getElementById("title-project-name").value;
-  var projectname = document.getElementById("title-project-name").value;
-  var filename = projectname + ".ino";
-  var element = document.createElement("a");
-  element.setAttribute(
-    "href",
-    "data:text/ino;charset=utf-8," + encodeURIComponent(code)
-  );
-  element.setAttribute("download", filename);
-  element.style.display = "none";
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-};
-BlocklyDuino.savepy = function () {
-  var code = $("#pre_previewArduino").text();
-  var datenow = Date.now();
-  var projectname = document.getElementById("title-project-name").value;
-  var projectname = document.getElementById("title-project-name").value;
-  var filename = projectname + ".py";
-  var element = document.createElement("a");
+  const code = $("#pre_previewArduino").text();
+  const datenow = Math.round(Date.now() / 1000);
+  const projectName = document.getElementById("title-project-name").value;
+  const filename = (projectName || `sketch-${datenow}`) + ".ino";
+  const element = document.createElement("a");
   element.setAttribute(
     "href",
     "data:text/ino;charset=utf-8," + encodeURIComponent(code)

@@ -28,7 +28,7 @@ var MSG = {
   span_languageMenu: "Language:",
   span_toolbox_all: "ALL",
   span_select_all: "Check all categories",
-  project_name_placeholder: " Project name",
+  project_name_placeholder: "Project name",
   survol: "",
   configModalLabel: "Language & Blocks",
   exampleModalLabel: "Examples",

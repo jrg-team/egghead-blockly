@@ -1,15 +1,12 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 
 <head>
   <link rel="icon" type="image/ico" href="media/app.ico" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title> EggHead Blockly </title>
+  <title>EggHead Blockly</title>
   <!-- JavaScript -->
   <script src="js/jquery.min.2.1.3.js" onload="window.$ = window.jQuery"></script>
-  <script src="js/alpinejs.min.js" defer></script>
-  <script src="js/handlers/store.js"></script>
-  <script src="js/handlers/arduino.js"></script>
   <script type="text/javascript" src="js/blockly.min.js"></script>
   <script type="text/javascript" src="js/type.js"></script>
   <script type="text/javascript" src="js/types.js"></script>
@@ -81,8 +78,12 @@
   <script type="text/javascript" src="js/intel-hex.browser.js"></script>
   <script type="text/javascript" src="js/ace.js"></script>
   <script type="text/javascript" src="js/ext-language_tools.js"></script>
+  <script src="js/alpinejs.min.js" defer></script>
+  <script src="js/handlers/store.js"></script>
+  <script src="js/handlers/arduino.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.3.3.6.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.extra.css" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.toggle.min.css" />
   <link rel="stylesheet" type="text/css" href="css/global.css" />
   <link rel="stylesheet" type="text/css" href="css/blocklino.css" />
@@ -90,86 +91,153 @@
 </head>
 
 <body onload="BlocklyDuino.init()" x-data="{ app: window.currentRunningPlatform === 'desktop' }">
-  <div class="loading"></div>
+  <div class="loading">
+    <div class="loader"></div>
+  </div>
   <div id="toptitle">
     <div id="title">
-      <div class="img"><img src="media/icon.png" class="img-fluid" alt="Logo"></div>
+      <div class="img">
+        <img src="media/icon.png" class="img-fluid" style="height: 30px;" alt="Logo" />
+      </div>
     </div>
   </div>
   <div id="header">
     <div id="btn_all">
-      <ul class="nav nav-tabs" role="tablist" style="display: none;">
-        <li role="presentation" class="active"><a href="#content_blocks" aria-controls="content_blocks" role="tab"
-            data-toggle="tab"></a></li>
-        <li role="presentation"><a href="#content_code" aria-controls="content_code" role="tab" data-toggle="tab"></a>
+      <ul class="nav nav-tabs" role="tablist" style="display: none">
+        <li role="presentation" class="active">
+          <a href="#content_blocks" aria-controls="content_blocks" role="tab" data-toggle="tab"></a>
+        </li>
+        <li role="presentation">
+          <a href="#content_code" aria-controls="content_code" role="tab" data-toggle="tab"></a>
         </li>
       </ul>
-      <span id="labelToolboxDefinition" style="color:white;font-weight: bold"> </span>
+      <span id="labelToolboxDefinition" style="color: white; font-weight: bold">
+      </span>
       <div id="btn_group1" class="btn-group">
-        <button id="btn_level1" class="btn btn-arduino-rect">1
-        </button>
-        <button id="btn_level2" class="btn btn-arduino-rect">2
-        </button>
-        <button id="btn_level3" class="btn btn-arduino-rect">3
-        </button>
+        <button id="btn_level1" class="btn btn-arduino-rect">1</button>
+        <button id="btn_level2" class="btn btn-arduino-rect">2</button>
+        <button id="btn_level3" class="btn btn-arduino-rect">3</button>
       </div>
+      <div class="header-divider"></div>
       <select id="languageMenu" onchange="BlocklyDuino.changelanguage();"
         style="height: 42px; border-radius: 5px; font-weight: bold"></select>
-      <!--	<button id="btn_config" class="btn btn-arduino" data-toggle="modal" data-target="#configModal">
-					<span class="fa fa-cog fa-lg fa-fw"></span>
-		</button> -->
-      <button id="btn_example" class="btn btn-arduino-rect" data-toggle="modal" data-target="#exampleModal">
+      <div class="header-divider"></div>
+      <button id="btn_example" class="btn btn-arduino-rect" data-toggle="modal" data-target="#exampleModal"
+        title="示例项目">
         <span class="fa fa-graduation"></span>
       </button>
+      <div class="header-divider"></div>
       <!--	<span id="exampleModalLabel" style="color:white;font-size:4" > </span> -->
       <input id="title-project-name" type="text" placeholder="Project name" value="" />
-      <button id="btn_saveXML" class="btn btn-arduino-rect">
+      <button id="btn_saveXML" class="btn btn-arduino-rect" title="保存">
         <span class="fa fa-floppy-o fa-lg fa-fw"></span>
       </button>
-      <button id="btn_new" class="btn btn-arduino-rect">
+      <button id="btn_new" class="btn btn-arduino-rect" title="新建项目">
         <span class="fa fa-file"></span>
       </button>
-      <button id="btn_fakeload" class="btn btn-arduino-rect">
+      <button id="btn_fakeload" class="btn btn-arduino-rect" title="打开文件">
         <span class="fa fa-folder-open"></span>
       </button>
-      <input type="file" id="load" accept=".bloc,.xml,.py,.ino" style="display: none;" />
-      <!--	<button id="btn_print" class="btn btn-arduino-rect">		<span class="fa fa-camera"> </span></button>-->
-      <button id="btn_undo" class="btn btn-arduino-rect">
+      <input type="file" id="load" accept=".bloc,.xml,.py,.ino" style="display: none" />
+      <button id="btn_undo" class="btn btn-arduino-rect" title="撤销">
         <span class="fa fa-undo"> </span>
       </button>
-      <button id="btn_redo" class="btn btn-arduino-rect">
+      <button id="btn_redo" class="btn btn-arduino-rect" title="重新执行">
         <span class="fa fa-repeat"> </span>
       </button>
-      <button class="btn" x-show="app" @click="listDevices">选择设备</button>
+      <div x-show="app" class="app-actions-wrapper">
+        <div class="header-divider"></div>
+        <button class="btn device-select-btn" @click="listDevices"
+          x-text="$store.devices.selected.port ? '切换设备' : '选择设备'"></button>
+        <div class="header-divider"></div>
+        <button id="btn_verify_code" class="btn btn-arduino-rect" title="校验代码" @click="verifyCode">
+          <span class="loader inline-loader" x-show="$store.processing.category === 'verify'"></span>
+          <span class="fa fa-check" x-show="$store.processing.category !== 'verify'"> </span>
+        </button>
+        <button id="btn_upload" class="btn btn-arduino-rect" title="烧录代码" @click="uploadCode">
+          <span class="loader inline-loader" x-show="$store.processing.category === 'upload'"></span>
+          <span class="fa fa-arrow-right" x-show="$store.processing.category !== 'upload'"></span>
+        </button>
+      </div>
     </div>
     <div id="btn_group" class="btn-group" role="group">
-      <!--	<button id="btn_about" class="btn btn-arduino-rect" data-toggle="modal" data-target="#aboutModal"><span class="fa fa-question"></span> </button> -->
+      <!-- <button id="btn_about" class="btn btn-arduino-rect" data-toggle="modal" data-target="#aboutModal"><span class="fa fa-question"></span> </button> -->
       <!-- <button id="btn_bin" class='btn btn-default'>	<span class="fa fa-download"> </span> </button> -->
       <!-- <button id="btn_factory" class="btn btn-default"><span class="fa fa-industry fa-fw"> </span> </button>  -->
       <!-- <button id="btn_term" class="btn btn-arduino-rect"><span class="fa fa-search"></span></button> -->
-      <button id="btn_preview" class="btn btn-arduino-rect"><span class="fa fa-code "> </span> </button>
-      <button id="btn_search" class='btn btn-arduino-rect'><span class="fa fa-binoculars"> </span></button>
+      <button id="btn_preview" class="btn btn-arduino-rect">
+        <span class="fa fa-code"> </span>
+      </button>
+      <button id="btn_search" class="btn btn-arduino-rect">
+        <span class="fa fa-binoculars"> </span>
+      </button>
       <input id="codeORblock" checked data-size="small" data-toggle="toggle"
         data-on="<span class='fa fa-puzzle  fa-2x' ></span>" data-off="<span class='fa fa-code fa-2x'></span>"
-        data-style="ios" data-onstyle="default" data-offstyle="default" type="checkbox">
-
+        data-style="ios" data-onstyle="default" data-offstyle="default" type="checkbox" />
     </div>
   </div>
   <div id="divBody" class="tab-content">
-    <div role="tabpanel" id="content_blocks" class="tab-pane fade in active" style="position: relative;">
-      <div id="toggle" class="modal-content" style="display: none;">
+    <div role="tabpanel" id="content_blocks" class="tab-pane fade in active" style="position: relative">
+      <div id="toggle" class="modal-content" style="display: none">
         <pre id="pre_previewArduino"></pre>
-        <div id="btn_group" class="btn-group" role="group">
-          <button id="btn_saveino" class="btn btn-default">
+        <div id="btn_group" class="btn-group-preview" role="group">
+          <button id="btn_saveino" class="btn btn-default" title="保存到本地">
             <span class="fa fa-floppy-o"> </span>
           </button>
-          <button id="btn_copy" class="btn btn-default">
+          <button id="btn_copy" class="btn btn-default" title="复制到剪贴板" @click="copyCode">
             <span class="fa fa-files-o"> </span>
           </button>
         </div>
       </div>
     </div>
-    <div role="tabpanel" id="content_code" class="tab-pane fade">#enter your code here</div>
+    <div role="tabpanel" id="content_code" class="tab-pane fade">
+      #enter your code here
+    </div>
+  </div>
+  <!-- device select modal -->
+  <div class="modal fade" id="device-select" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
+    data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="title" style="font-size: 18px; font-weight: bold;">选择开发板和端口</div>
+          <div class="block-titles">
+            <div class="title-board">开发板</div>
+            <div class="title-ports">端口</div>
+          </div>
+          <div class="device-blocks">
+            <div class="boards">
+              <template x-for="board in $store.devices.boards">
+                <div class="board" :class="$store.devices.isSelected('board', board) ? 'selected' : ''"
+                  @click="$store.devices.select('board', board)">
+                  <img x-bind:src="board.picture" />
+                  <div class="name" x-text="board.name"></div>
+                </div>
+              </template>
+            </div>
+            <div class="ports">
+              <template x-for="portDetail in $store.devices.ports">
+                <div class="port" :class="$store.devices.isSelected('port', portDetail.port) ? 'selected' : ''"
+                  @click="$store.devices.select('port', portDetail.port)">
+                  <div class="port-label">
+                    <span x-text="portDetail.port.label"></span>&nbsp;<span
+                      x-text="portDetail.port.protocol_label"></span>
+                  </div>
+                  <span x-show="$store.devices.isSelected('port', portDetail.port)" class="selected-icon fa fa-check"
+                    aria-hidden="true"></sp>
+                </div>
+              </template>
+              <div x-show="$store.devices.fetching" class="fetching">
+                <div class="loader" style="width: 24px; height: 24px; border-width: 3px;"></div>&emsp;读取中
+              </div>
+            </div>
+          </div>
+          <div class="device-actions">
+            <button class="btn" @click="$store.devices.onDeviceConfirm">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- message modal -->
   <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -182,79 +250,14 @@
       </div>
     </div>
   </div>
-  <!-- about modal -->
-  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&#215;</span></button>
-          <span class="fa fa-2x" class="modal-title" id="aboutModalLabel"></span>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-4"><img src="media/logo.png" style="width:128px; height:128px;" /></div>
-              <div class="col-md-8">
-                <span class="fa fa-2x" id="versionapp"></span><br /><br />
-                <span id="aboutBody"></span><br /><br />
-                <button id="btn_site" class="btn btn-default">
-                  <span class="fa fa-search fa-1_5x" id="span_site"></span>
-                </button>
-                <button id="btn_forum" class="btn btn-default">
-                  <span class="fa fa-comments fa-1_5x" id="span_forum"></span>
-                </button>
-                <button id="btn_contact" class="btn btn-default">
-                  <span class="fa fa-envelope fa-1_5x" id="span_contact"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="checkbox" id="verifyUpdate"><span id="span_update"></span><br />
-          <button id="btn_version" type="button" class="btn btn-xs btn-default"><span
-              id="span_verify_update"></span></button><br />
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- toolbox config modal
-	<div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
-				<span class="fa fa-cog fa-2x" class="modal-title"  id="configModalLabel"></span>
-			</div>
-			<div class="modal-body">
-				<label id="span_languageMenu"></label>
-				<select id="languageMenu"></select><br><br>
-				<div id="divToolbox">
-					<label id="labelToolboxDefinition"></label>
-					<select id="toolboxes">
-						<option value="toolbox_6"selected="selected">Beginner 👶</option>
-						<option value="toolbox_arduino_all" >Advanced 👨‍💻</option>
-						<option value="toolbox_master">Master 👨‍🚀</option>
-					</select>
-				</div>
-			</div>
-		  <input type="checkbox" name="select_all" id="select_all"/> <span id="span_select_all"> </span>
-		  <div class="modal-body" id="modal-body-config"></div>
-		  <div class="modal-footer">
-			<button id="btn_valid_config" type="button" class="btn btn-primary"></button>
-		  </div>
-		</div>
-	  </div>
-	</div>
--->
   <!-- example modal -->
   <div class="modal fade" id="exampleModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&#215;</span></button>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&#215;</span>
+          </button>
           <span class="fa fa-file-text fa-2x" class="modal-title" id="exampleModalLabel"></span>
         </div>
         <div class="modal-body">
@@ -267,61 +270,30 @@
       </div>
     </div>
   </div>
-  <!-- modal_blink -->
-  <div id="modal_blink" class="modal modal-child" data-modal-parent="#exampleModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="examples//media/powerinputs.png" style="height:500px" />
+
+  <div class="toast-wrapper">
+    <template x-for="(message, index) in $store.messages.list">
+      <div class="toast" :class="message.type" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="mr-auto" x-text="message.title"></strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" @click="$store.messages.remove(index)">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="toast-body" x-html="message.content"></div>
       </div>
-    </div>
-  </div>
-  <div id="modal_diy" class="modal modal-child" data-modal-parent="#exampleModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="examples/media/wirediy.png" style="height:500px" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="modal_plus" class="modal modal-child" data-modal-parent="#exampleModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="examples/media/wireplus.png" style="height:750px;" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="modal_eyes" class="modal modal-child" data-modal-parent="#exampleModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="examples/media/wireeyes.png" style="height:750px" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="modal_humanoid" class="modal modal-child" data-modal-parent="#exampleModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="examples/media/wireh.png" style="height:750px" />
-        </div>
-      </div>
-    </div>
+    </template>
   </div>
   <script type="text/javascript">
-    $(window).load(function () { $(".loading").fadeOut("slow") });
+    $(window).load(function () {
+      $(".loading").fadeOut("slow");
+    });
     ace.require("ace/ext/language_tools");
     var editor = ace.edit("content_code");
     editor.setTheme("ace/theme/sqlserver");
     editor.session.setTabSize(2);
     editor.setShowPrintMargin(false);
   </script>
-  <!-- <script type="text/javascript" src="../index.js"></script>
-  <script type="text/javascript" src="../factory.js"></script> -->
 </body>
+
 </html>

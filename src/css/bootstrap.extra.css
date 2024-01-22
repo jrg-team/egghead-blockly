@@ -1,0 +1,281 @@
+
+.modal-dialog-centered {
+  top: 50%;
+  transform: translateY(-50%) !important;
+}
+.btn-default {
+  color: #fff;
+  background-color: #016D70;
+  border-color: #fff;
+}
+.btn-default:hover,.btn-default:focus,.btn-default:active {
+  color: #016D70;
+  background-color: #7FCBCD;
+  border-color: #7FCBCD;
+}
+.btn-secondary {
+  color: #fff;
+  background-color: #b8b8b8;
+  border-color: #b8b8b8;
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #939393;
+  border-color: #939393;
+}
+.btn-secondary:focus, .btn-secondary.focus {
+  color: #fff;
+  background-color: #939393;
+  border-color: #939393;
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+}
+.btn-secondary.disabled, .btn-secondary:disabled {
+  color: #fff;
+  background-color: #b8b8b8;
+  border-color: #b8b8b8;
+}
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #545b62;
+  border-color: #4e555b;
+}
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+}
+.btn-minmax {
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  background-color: #2d2d64;
+  border-color: #2d2d64;
+  line-height: 0px;
+  padding:0;
+}
+.btn-quit {
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  background-color: #2d2d64;
+  border-color: #2d2d64;
+  line-height: 0px;
+  padding:0;
+}
+.btn-minmaxBlue {
+  color: #666666;
+  width: 40px;
+  height: 40px;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+  line-height: 0px;
+  padding:0;
+}
+.btn-quitBlue {
+  color: #d9534f;
+  width: 40px;
+  height: 40px;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+  line-height: 0px;
+  padding:0;
+}
+.btn-quitGray {
+  color: #ff6600;
+  width: 30px;
+  height: 30px;
+  background-color: #b8b8b8;
+  border-color: #b8b8b8;
+  line-height: 0px;
+  padding:0;
+}
+.btn-arduino {
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  background-color: #32D900;
+  border-color: #32D900;
+  line-height: 30px;
+  padding:0;
+  border-radius:100%;
+
+}
+.btn-arduino:hover,.btn-arduino:focus,.btn-arduino:active {
+  color: #fff;
+  background-color: #ff6600;
+  border-color: #ff6600;
+  border-radius:50%;
+}
+.btn-arduino-rect {
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  background-color: #016D70;
+  border-color: #fff;
+  line-height: 0px;
+  padding:0;
+  border-radius:5px;
+  font-size:120%;
+  font-weight: 750;
+}
+.btn-arduino-rect:hover,.btn-arduino-rect:focus,.btn-arduino-rect:active {
+  color: #016D70;
+  background-color: #7FCBCD;
+  border-color: #7FCBCD;
+}
+.btn-arduino:active,.btn-arduino.active,.open .dropdown-toggle.btn-arduino {
+  background-image: none;
+}
+.btn-arduino.disabled,.btn-arduino[disabled],fieldset[disabled] .btn-arduino,.btn-arduino.disabled:hover,.btn-arduino[disabled]:hover,fieldset[disabled] .btn-arduino:hover, .btn-arduino.disabled:focus, .btn-arduino[disabled]:focus, fieldset[disabled] .btn-arduino:focus, .btn-arduino.disabled:active, .btn-arduino[disabled]:active, fieldset[disabled] .btn-arduino:active, .btn-arduino.disabled.active, .btn-arduino[disabled].active, fieldset[disabled] .btn-arduino.active {
+  background-color: #ff6600;
+  border-color: #8080;
+}
+#btn_group.btn-group-preview {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+h4{
+	margin-left: 5px;
+}
+.fa ,
+.fas{
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+          animation: fa-spin 2s infinite linear;
+}
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+          animation: fa-spin 1s infinite steps(8);
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); }
+}
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.fa-1_5x {
+  font-size: 1.5em;
+}
+.fa-1_75x {
+  font-size: 1.75em;
+}
+.fa-2x {
+  font-size: 2em;
+}
+.fa-3x {
+  font-size: 3em;
+}
+.fa-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.fa-inverse {color: #ffffff;}
+.fa-industry:before{content:"\f275"}
+.fa-times:before{content:"\f00d"}
+.fa-calendar-check-o:before {content: "\f274"}
+.fa-arrow-right:before {content: "\f061"}
+.fa-question:before {content: "\f128"}
+.fa-camera:before {content: "\f030"}
+.fa-code:before {content: "\f121"}
+.fa-repeat:before{content:"\f01e"}
+.fa-undo:before{content:"\f0e2"}
+.fa-cloud-download:before{content:"\f0ed"}
+.fa-file-text:before{content:"\f15c"}
+.fa-file:before{content:"\f15b"}
+.fa-folder-open:before{content:"\f07c"}
+.fa-cog:before{content:"\f013"}
+.fa-github:before{content:"\f09b"}
+.fa-check:before{content:"\f00c"}
+.fa-envelope:before{content:"\f0e0"}
+.fa-terminal:before{content:"\f120"}
+.fa-floppy-o:before{content:"\f0c7"}
+.fa-search:before{content:"\f002"}
+.fa-minimize:before{content:"\f2d1"}
+.fa-maximize:before{content:"\f2d0"}
+.fa-download:before{content:"\f019"}
+.fa-spinner:before{content:"\f110"}
+.fa-comments:before{content:"\f086"}
+.fa-puzzle:before{content:"\f12e"}
+.fa-eject:before{content:"\f052"}
+.fa-pause:before{content:"\f04c"}
+.fa-play:before{content:"\f04b"}
+.fa-eraser:before{content:"\f12d"}
+.fa-chevron-right:before{content:"\f054"}
+.fa-microchip:before{content:"\f2db"}
+.fa-usb:before{content:"\f287"}
+.fa-graduation:before{content:"\f19d"}
+.fa-binoculars:before{content:"\f1e5"}
+.fa-files-o:before{content:"\f0c5"}
+.fa-code-fork:before{content:"\f126"}
+.fa-user:before{content:"\f007"}
+.fa-reddit:before{content:"\f1a1"}
+
+
+.toast-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 30px 30px 0 0;
+  z-index: 1051;
+}
+
+.toast-wrapper .toast {
+  background-color: white;
+  border-radius: 6px;
+  min-height: 100px;
+  width: 300px;
+  padding: 12px 16px;
+}
+
+.toast-wrapper .toast {
+  margin-top: 20px;
+}
+
+.toast .toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #016D70;
+  font-weight: bold;
+}
+
+.toast.error .toast-header {
+  color: #ff4d4f;
+}
+
+.toast.warning .toast-header {
+  color: #faad14;
+}
+
+.toast.success .toast-header {
+  color: #52c41a;
+}
+
+.toast .toast-body {
+  margin-top: 8px;
+  overflow-x: auto;
+}

@@ -28,7 +28,7 @@ var MSG = {
   span_languageMenu: "语言:",
   span_toolbox_all: "所有",
   span_select_all: "检查所有种类",
-  project_name_placeholder: ' 项目名称',
+  project_name_placeholder: '项目名称',
   survol: "",
   configModalLabel: "Language & Blocks",
   exampleModalLabel: " 示例",

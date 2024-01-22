@@ -2,13 +2,13 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
 
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer, clipboard } = require('electron')
 
 contextBridge.exposeInMainWorld('currentRunningPlatform', 'desktop')
 
 contextBridge.exposeInMainWorld('arduinoApi', {
-  'file.save-ino': (code) => ipcRenderer.send('file.save-ino', code),
-  'file.save-bloc': (code) => ipcRenderer.send('file.save-bloc', code),
-  'file.save-file': ({code, path, suffix}) => ipcRenderer.send('file.save-file', {code, path, suffix}),
-  'arduino.board.list': () => ipcRenderer.invoke('arduino.board.list')
+  'arduino.board.list': () => ipcRenderer.invoke('arduino.board.list'),
+  'arduino.code.verify': (...params) => ipcRenderer.invoke('arduino.code.verify', ...params),
+  'arduino.code.upload': (...params) => ipcRenderer.invoke('arduino.code.upload', ...params),
+  'arduino.code.copy': (code) => ipcRenderer.invoke('arduino.code.copy', code)
 })

@@ -2,8 +2,6 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const  arduinoApi = require('./native-tools/arduino')
 
-console.log(arduinoApi)
-
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -12,7 +10,7 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1000,
+    width: 1200,
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -27,8 +25,9 @@ const createWindow = () => {
 };
 
 const execApi = () => {
-  console.log(arduinoApi['arduino.board.list'])
-  ipcMain.handle('arduino.board.list', arduinoApi['arduino.board.list'])
+  Object.entries(arduinoApi).forEach(([key, callback]) => {
+    ipcMain.handle(key, callback)
+  })
 }
 
 // This method will be called when Electron has finished
