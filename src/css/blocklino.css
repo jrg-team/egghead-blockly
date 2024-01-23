@@ -299,7 +299,8 @@
 #btn_upload,
 #btn_preview,
 #btn_copy,
-#btn_saveino {
+#btn_saveino, 
+.device-select-btn {
   position: relative;
 }
 #btn_example::after,
@@ -312,7 +313,8 @@
 #btn_upload::after,
 #btn_preview::after,
 #btn_copy::after,
-#btn_saveino::after {
+#btn_saveino::after,
+.device-select-btn::after {
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -332,6 +334,11 @@
   transform: translate(-100%, calc(100% + 10px));
 }
 
+.device-select-btn::after {
+  padding: 8px 12px;
+  font-weight: bold;
+}
+
 #btn_example:hover::after,
 #btn_saveXML:hover::after,
 #btn_new:hover::after,
@@ -342,7 +349,8 @@
 #btn_upload:hover::after,
 #btn_preview:hover::after,
 #btn_copy:hover::after,
-#btn_saveino:hover::after {
+#btn_saveino:hover::after,
+.device-select-btn:hover::after {
   content: attr(title);
 }
 
@@ -381,6 +389,11 @@
   font-size: 16px;
   height: 42px;
   background-color: white;
+}
+
+.btn.device-select-btn.port-selected {
+  background-color: #7FCBCD;
+  color: #016D70;
 }
 
 .device-blocks {

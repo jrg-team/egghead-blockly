@@ -147,8 +147,8 @@
       </button>
       <div x-show="app" class="app-actions-wrapper">
         <div class="header-divider"></div>
-        <button class="btn device-select-btn" @click="listDevices()"
-          x-text="$store.devices.selected.port ? '切换设备' : '选择设备'"></button>
+        <button class="btn device-select-btn" :class="$store.devices.selected.port ? 'port-selected' : ''" @click="listDevices()"
+          x-text="$store.devices.selected.port ? '切换设备' : '选择设备'" :title="$store.devices.selected.port ? '端口已选择 ✅' : '请选择开发板和端口 ⚠️'"></button>
         <div class="header-divider"></div>
         <button id="btn_verify_code" class="btn btn-arduino-rect" title="校验代码" @click="verifyCode">
           <span class="loader inline-loader" x-show="$store.processing.category === 'verify'"></span>
