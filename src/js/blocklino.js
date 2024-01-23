@@ -6,6 +6,27 @@ BlocklyDuino.selectedCard = "nano";
 BlocklyDuino.content = "on";
 BlocklyDuino.workspace = null;
 
+// @reference: https://beautifier.io
+BlocklyDuino.codeBeautifyConfig = {
+  indent_size: "2",
+  indent_char: " ",
+  max_preserve_newlines: "2",
+  preserve_newlines: true,
+  keep_array_indentation: false,
+  break_chained_methods: false,
+  indent_scripts: "keep",
+  brace_style: "collapse",
+  space_before_conditional: true,
+  unescape_strings: false,
+  jslint_happy: false,
+  end_with_newline: false,
+  wrap_line_length: "120",
+  indent_inner_html: false,
+  comma_first: false,
+  e4x: false,
+  indent_empty_lines: false,
+};
+
 BlocklyDuino.init = function () {
   Code.initLanguage();
   BlocklyDuino.loadConfig();
@@ -91,12 +112,14 @@ BlocklyDuino.loadFile = function () {
 BlocklyDuino.renderArduinoCodePreview = function () {
   var prog = window.localStorage.prog;
   if (prog != "python") {
-    $("#pre_previewArduino").text(
-      Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace)
-    );
-    $("#pre_previewArduino").html(
-      prettyPrintOne($("#pre_previewArduino").html(), "cpp")
-    );
+    let code = Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace);
+    if (window.js_beautify) {
+      code = js_beautify(code, BlocklyDuino.codeBeautifyConfig);
+    }
+    $("#pre_previewArduino").text(code);
+    code = $("#pre_previewArduino").html();
+
+    $("#pre_previewArduino").html(prettyPrintOne(code, "cpp"));
   } else {
     $("#pre_previewArduino").text(
       Blockly.Python.workspaceToCode(BlocklyDuino.workspace)
