@@ -189,7 +189,7 @@ window.profile = {
     ],
     serialPin: [["Rx/Tx", "0"]],
     build: "",
-    upload_arg: "AirM2M:AirMCU:AirM2M_Air001_Board",
+    upload_arg: "esp32:esp32:AirM2M_CORE_ESP32C3",
     cpu: "esp32c3",
     speed: "115200",
     prog: "arduino",

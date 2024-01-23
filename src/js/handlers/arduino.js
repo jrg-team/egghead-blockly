@@ -8,11 +8,13 @@ const getStores = () => {
 
 const toPlainObject = (alpineObj) => JSON.parse(JSON.stringify(alpineObj));
 
-function listDevices() {
+function listDevices(config = { showModal: true }) {
   const store = Alpine.store("devices");
   store.updateFetching(true);
-  $("#device-select").modal("show");
-  window.arduinoApi["arduino.board.list"]()
+  if (config.showModal) {
+    $("#device-select").modal("show");
+  }
+  return window.arduinoApi["arduino.board.list"]()
     .then((strings) => {
       const ports = JSON.parse(strings);
       store.updatePorts(ports);
@@ -21,6 +23,16 @@ function listDevices() {
       store.updateFetching(false);
     });
 }
+
+const onVerifyFailed = (result) => {
+  const { messageStore } = getStores();
+  messageStore.add({
+    type: "error",
+    title: result.error,
+    content: `<code style="font-size: 12px">${result.compiler_err}</code>`,
+    duration: 0,
+  });
+};
 
 function verifyCode() {
   const { deviceStore, messageStore, processingStore } = getStores();
@@ -52,14 +64,7 @@ function verifyCode() {
             title: "验证成功",
             content: "代码验证成功！",
           });
-        } else {
-          messageStore.add({
-            type: "error",
-            title: result.error,
-            content: `<code style="font-size: 12px">${result.compiler_err}</code>`,
-            duration: 0,
-          });
-        }
+        } else onVerifyFailed(result);
       },
       (e) => {
         messageStore.add({
@@ -93,19 +98,36 @@ function uploadCode() {
       title: "烧录失败",
       content: "没有搜寻到选中的端口，请检查连接",
     });
-    return $("#device-select").modal("show");
+    return listDevices();
   }
   processingStore.setProcessing("upload");
 
   const code = $("#pre_previewArduino").text();
 
-  window.arduinoApi["arduino.code.verify"]({
+  window.arduinoApi["arduino.code.upload"]({
     code,
     board: toPlainObject(deviceStore.selected.board),
     port: toPlainObject(deviceStore.selected.port),
   })
     .then(
-      (r) => console.log(r),
+      (r) => {
+        if (r.success) {
+          messageStore.add({
+            type: "success",
+            title: "烧录成功",
+            content: "代码烧录成功！",
+          });
+        } else {
+          if (r.stage === "verify") onVerifyFailed(r);
+          else
+            messageStore.add({
+              type: "error",
+              title: r.error,
+              content: (r.output && r.output.stderr) || "烧录失败",
+              duration: 0,
+            });
+        }
+      },
       (e) => {
         console.error(e);
         messageStore.add({

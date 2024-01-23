@@ -1,7 +1,7 @@
 const { spawn, exec } = require("child_process");
 const fs = require("fs");
 const path = require("path");
-const {clipboard} = require('electron')
+const { clipboard } = require("electron");
 
 const arduinoBasePath =
   process.platform == "win32"
@@ -36,15 +36,26 @@ module.exports = {
       arduinoProcess.stderr.on("data", (data) => reject(data));
     });
   },
-  "arduino.code.verify": async (event, { code, board }) => verifyCode({code, board}),
+  "arduino.code.verify": async (event, { code, board }) =>
+    verifyCode({ code, board }),
   "arduino.code.upload": async (event, { code, board, port }) => {
-    const verifyResult = await verifyCode({code, board})
-    if (!verifyResult.success) return verifyResult
-    const {upload_arg} = board
+    const verifyResult = await verifyCode({ code, board });
+    console.log(verifyResult);
+    if (!verifyResult.success)
+      return Promise.resolve({
+        ...verifyResult,
+        stage: "verify",
+        success: false,
+      });
+    const { upload_arg } = board;
     const cmd = `${arduinoCommand} upload -b ${upload_arg} --port ${port.label} ${compileFilePath} --format json`;
-    exec(cmd, { cwd: arduinoBasePath }, (error, stdout, stderr) => {
-      resolve(JSON.parse(stdout));
+    return new Promise((resolve, reject) => {
+      exec(cmd, { cwd: arduinoBasePath }, (error, stdout, stderr) => {
+        if (stderr)
+          resolve({ ...JSON.parse(stderr), stage: "upload", success: false });
+        else resolve({ ...JSON.parse(stdout), stage: "upload", success: true });
+      });
     });
   },
-  "arduino.code.copy": async (event, code) => clipboard.writeText(code)
+  "arduino.code.copy": async (event, code) => clipboard.writeText(code),
 };
