@@ -7,7 +7,7 @@ const arduinoBasePath =
   process.platform == "win32"
     ? "./compilation/arduino"
     : path.join(__dirname, "../../compilation/arduino");
-const arduinoCommand = "arduino-cli";
+const arduinoCommand =  path.join(__dirname, "../../compilation/bin/arduino-cli");
 const compileFilePath = `${arduinoBasePath}/sketch/sketch.ino`;
 
 const verifyCode = ({ code, board }) => {

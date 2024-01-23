@@ -151,3 +151,17 @@ function copyCode() {
     content: "代码已复制到剪贴板",
   });
 }
+
+function openMonitor() {
+  const { messageStore, deviceStore } = getStores();
+  if (!deviceStore.selected.port) {
+    messageStore.add({
+      type: "error",
+      title: "请先选择端口",
+      content:
+        '使用串口监视仪前需要<strong class="color-font">先选择端口</strong>',
+    });
+    return listDevices();
+  }
+  window.arduinoApi["serial.monitor.open"](deviceStore.selected.port.label)
+}

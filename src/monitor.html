@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.3.3.6.css" />
+    <link rel="stylesheet" type="text/css" href="css/monitor.css" />
+    <title>串口监视器</title>
+    <script src="js/alpinejs.min.js" defer></script>
+    <script src="js/handlers/monitor.js"></script>
+  </head>
+  <body x-data>
+    <div class="wrapper">
+      <div class="input-wrapper">
+        <input
+          class="input"
+          id="message-input"
+          placeholder="消息（按回车发送消息）"
+          x-on:keyup.enter="$store.monitor.sendMessage"
+          @input="$store.monitor.onMessageUpdate"
+        />
+        <div x-text="$store.monitor.message"></div>
+        <select
+          x-data="{ baudRate: [300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600] }"
+          @change="$store.monitor.onBaudRateUpdate"
+        >
+          <template x-for="(value, index) in baudRate">
+            <option
+              x-bind:selected="$store.monitor.baudRate === value"
+              :value="value"
+              x-text="`波特率 ${value}`"
+            ></option>
+          </template>
+        </select>
+        <button @click="$store.monitor.sendMessage">发送</button>
+      </div>
+      <div id="messages-list" class="messages-list"></div>
+      <div class="actions">
+        <button @click="saveMessages">保存记录</button>
+        <button id="toggleReceive" @click="$store.monitor.toggleReceive">停止接收</button>
+      </div>
+    </div>
+  </body>
+</html>

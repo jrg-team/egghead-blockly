@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  background-color: #e3ecee;
+  font-size: 14px;
+}
+
+
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+select, button, input {
+  height: 32px;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+button + button {
+  margin-left: 8px;
+}
+
+button {
+  background-color: #7FCBCD;
+  border: 1px solid #7FCBCD;
+  border-radius: 4px;
+  color: #016D70;
+}
+
+button:hover {
+  color: white;
+  border-color: white;
+  background-color: #016D70;
+}
+
+input, select {
+  border: 1px solid #ddd;
+}
+
+.input-wrapper select, .input-wrapper button {
+  flex-shrink: 0;
+  margin-left: 0.3em;
+}
+
+.input-wrapper input {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.messages-list {
+  flex: 1;
+  margin: 20px 0;
+  border-radius: 8px;
+  padding: 20px;
+  overflow: auto;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+  border: 1px solid #ddd;
+}

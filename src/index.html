@@ -102,7 +102,6 @@
     </div>
   </div>
   <div id="header">
-    <div id="btn_all">
       <ul class="nav nav-tabs" role="tablist" style="display: none">
         <li role="presentation" class="active">
           <a href="#content_blocks" aria-controls="content_blocks" role="tab" data-toggle="tab"></a>
@@ -114,9 +113,9 @@
       <span id="labelToolboxDefinition" style="color: white; font-weight: bold">
       </span>
       <div id="btn_group1" class="btn-group">
-        <button id="btn_level1" class="btn btn-arduino-rect">1</button>
-        <button id="btn_level2" class="btn btn-arduino-rect">2</button>
-        <button id="btn_level3" class="btn btn-arduino-rect">3</button>
+        <button id="btn_level1" class="btn btn-arduino-rect level">1</button>
+        <button id="btn_level2" class="btn btn-arduino-rect level">2</button>
+        <button id="btn_level3" class="btn btn-arduino-rect level">3</button>
       </div>
       <div class="header-divider"></div>
       <select id="languageMenu" onchange="BlocklyDuino.changelanguage();"
@@ -148,7 +147,9 @@
       <div x-show="app" class="app-actions-wrapper">
         <div class="header-divider"></div>
         <button class="btn device-select-btn" :class="$store.devices.selected.port ? 'port-selected' : ''" @click="listDevices()"
-          x-text="$store.devices.selected.port ? '切换设备' : '选择设备'" :title="$store.devices.selected.port ? '端口已选择 ✅' : '请选择开发板和端口 ⚠️'"></button>
+          x-text="$store.devices.selected.port ? '切换设备' : '选择设备'" 
+          :title="`端口: ${($store.devices.selected.port || {}).label || '未选择 ⚠️'} \n开发板: ${($store.devices.selected.board || {}).name ||  '未选择 ⚠️'}`"
+          ></button>
         <div class="header-divider"></div>
         <button id="btn_verify_code" class="btn btn-arduino-rect" title="校验代码" @click="verifyCode">
           <span class="loader inline-loader" x-show="$store.processing.category === 'verify'"></span>
@@ -158,23 +159,22 @@
           <span class="loader inline-loader" x-show="$store.processing.category === 'upload'"></span>
           <span class="fa fa-arrow-right" x-show="$store.processing.category !== 'upload'"></span>
         </button>
+        <button id="btn_monitor" class="btn btn-arduino-rect" :title="'串口监视器(' + (($store.devices.selected.port || {}).label || '未选择') + ')'" @click="openMonitor">
+          <i class="fa fa-usb" aria-hidden="true"></i>
+        </button>
       </div>
-    </div>
-    <div id="btn_group" class="btn-group" role="group">
-      <!-- <button id="btn_about" class="btn btn-arduino-rect" data-toggle="modal" data-target="#aboutModal"><span class="fa fa-question"></span> </button> -->
-      <!-- <button id="btn_bin" class='btn btn-default'>	<span class="fa fa-download"> </span> </button> -->
-      <!-- <button id="btn_factory" class="btn btn-default"><span class="fa fa-industry fa-fw"> </span> </button>  -->
-      <!-- <button id="btn_term" class="btn btn-arduino-rect"><span class="fa fa-search"></span></button> -->
-      <button id="btn_preview" class="btn btn-arduino-rect">
-        <span class="fa fa-code"> </span>
-      </button>
-      <button id="btn_search" class="btn btn-arduino-rect">
-        <span class="fa fa-binoculars"> </span>
-      </button>
-      <input id="codeORblock" checked data-size="small" data-toggle="toggle"
-        data-on="<span class='fa fa-puzzle  fa-2x' ></span>" data-off="<span class='fa fa-code fa-2x'></span>"
-        data-style="ios" data-onstyle="default" data-offstyle="default" type="checkbox" />
-    </div>
+      <div id="btn_group" class="btn-group" role="group">
+        <button id="btn_preview" class="btn btn-arduino-rect">
+          <span class="fa fa-code"> </span>
+        </button>
+        <button id="btn_search" class="btn btn-arduino-rect">
+          <span class="fa fa-binoculars"> </span>
+        </button>
+        <input id="codeORblock" checked data-size="small" data-toggle="toggle"
+          data-on="<span class='fa fa-puzzle  fa-2x' ></span>" data-off="<span class='fa fa-code fa-2x'></span>"
+          data-style="ios" data-onstyle="default" data-offstyle="default" type="checkbox" />
+      </div>
+    
   </div>
   <div id="divBody" class="tab-content">
     <div role="tabpanel" id="content_blocks" class="tab-pane fade in active" style="position: relative">

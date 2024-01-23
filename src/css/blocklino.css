@@ -95,14 +95,23 @@
   overflow: auto;
 }
 #header {
-  height: 40px;
   position: relative;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 12px;
   z-index: 2;
   font-size: 16px;
+  align-items: center;
+}
+#btn_level1 {
+  margin-left: 5px;
+}
+#btn_saveXML, #btn_new, #btn_fakeload, #btn_undo, #btn_redo {
+  margin-left: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .arduino_card_mini_picture_div {
   position: absolute;
@@ -144,6 +153,10 @@
 #btn_all,
 #btn_group {
   position: relative;
+}
+#btn_group {
+  flex-shrink: 0;
+  margin-left: auto;
 }
 #toggle {
   width: 25%;
@@ -299,7 +312,8 @@
 #btn_upload,
 #btn_preview,
 #btn_copy,
-#btn_saveino, 
+#btn_saveino,
+#btn_monitor,
 .device-select-btn {
   position: relative;
 }
@@ -314,15 +328,18 @@
 #btn_preview::after,
 #btn_copy::after,
 #btn_saveino::after,
+#btn_monitor::after,
 .device-select-btn::after {
   position: absolute;
   left: 50%;
   bottom: 0;
   font-size: 14px;
-  transform: translate(-50%, 42px);
+  transform: translate(-50%, calc(100% + 20px));
   background-color: #f6f6f6;
   border-radius: 4px;
   padding: 16px 12px;
+  min-width: 3em;
+  white-space: pre;
   color: #333;
   height: fit-content;
 }
@@ -350,6 +367,7 @@
 #btn_preview:hover::after,
 #btn_copy:hover::after,
 #btn_saveino:hover::after,
+#btn_monitor:hover::after,
 .device-select-btn:hover::after {
   content: attr(title);
 }
