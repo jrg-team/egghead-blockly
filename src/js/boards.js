@@ -7,9 +7,9 @@ window.profile = {
   nanooptiboot: {
     name: "Arduino Nano",
     category: "Arduino",
+    platform: "arduino:avr",
     BUILTIN_LED: 13,
-    picture:
-      "media/nano-new.png",
+    picture: "media/nano-new.png",
     dropdownAllPins: [
       ["2", "2"],
       ["3", "3"],
@@ -96,9 +96,9 @@ window.profile = {
   esp32: {
     name: "ESP32 Devkit",
     category: "ESP32",
+    platform: "esp32:esp32",
     BUILTIN_LED: 2,
-    picture:
-      "media/DevKitC.png",
+    picture: "media/DevKitC.png",
     dropdownPWM: [
       ["0", "0"],
       ["2", "2"],
@@ -148,9 +148,9 @@ window.profile = {
   esp32c3: {
     name: "AirMCU ESP32C3",
     category: "ESP32",
+    platform: "esp32:esp32",
     BUILTIN_LED: 2,
-    picture:
-      "media/airmcu-esp32c3.png",
+    picture: "media/airmcu-esp32c3.png",
     dropdownPWM: [
       ["0", "0"],
       ["2", "2"],
@@ -200,6 +200,7 @@ window.profile = {
   nano: {
     name: "Arduino Nano (Old Bootloader)",
     category: "Arduino",
+    platform: "arduino:avr",
     BUILTIN_LED: 13,
     picture: "media/nano.png",
     dropdownAllPins: [
@@ -289,6 +290,7 @@ window.profile = {
   uno: {
     name: "Arduino Uno",
     category: "Arduino",
+    platform: "arduino:avr",
     BUILTIN_LED: 13,
     picture: "media/uno.png",
     dropdownAllPins: [
@@ -377,6 +379,7 @@ window.profile = {
   mega: {
     name: "Arduino Mega",
     category: "Arduino",
+    platform: "arduino:avr",
     BUILTIN_LED: 13,
     picture: "media/mega.png",
     dropdownAllPins: [

@@ -1,3 +1,10 @@
+const allPlatforms = Array.from(
+  new Set(Object.values(window.profile).map((b) => b.platform))
+);
+const isArrayEqual = (a, b) => {
+  return a.length === b.length && a.every((element) => b.includes(element));
+};
+
 document.addEventListener("alpine:init", () => {
   Alpine.store("devices", {
     fetching: false,
@@ -6,24 +13,35 @@ document.addEventListener("alpine:init", () => {
       board: null,
       port: null,
     },
+    installPlatform: [],
     boards: Object.values(window.profile).sort((a, b) =>
       a.category > b.category ? 1 : -1
     ),
     init() {
       listDevices({ showModal: false }).then(() => {
-        this.readPrevSelect()
+        this.readPrevSelect();
+      });
+      this.updatePlatformStatus();
+    },
+    updatePlatformStatus() {
+      getInstalledPlatforms().then((platforms) => {
+        this.installPlatform = platforms;
+        console.log(this.installPlatform)
+        if (!isArrayEqual(platforms, allPlatforms)) {
+          setTimeout(() => this.updatePlatformStatus(), 5000);
+        }
       });
     },
     readPrevSelect() {
       const prevBoard = localStorage.getItem(`selectedBoard`);
       if (prevBoard) {
-        const board = this.boards.find(b => b.name === prevBoard)
-        board && this.select('board', board)
+        const board = this.boards.find((b) => b.name === prevBoard);
+        board && this.select("board", board);
       }
       const prevPort = localStorage.getItem(`selectedPort`);
       if (prevPort) {
-        const portDetail = this.ports.find(b => b.port.label === prevPort)
-        portDetail && this.select('port', portDetail.port)
+        const portDetail = this.ports.find((b) => b.port.label === prevPort);
+        portDetail && this.select("port", portDetail.port);
       }
     },
     updateFetching(fetching = true) {

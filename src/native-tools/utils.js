@@ -12,10 +12,16 @@ const downloadPackedLibPath = path.join(
   arduinoBasePath,
   "packed-libraries.zip"
 );
+const packedLibInstallFileFlag = path.join(arduinoBasePath, 'lib-installed')
 const cliConfigFile = path.join(
   compilationPath,
   "./arduino/configuration/arduino-cli.yaml"
 );
+const arduinoDirectories = {
+  data: path.join(compilationPath, "./arduino/storage/data"),
+  downloads: path.join(compilationPath, "./arduino/storage/downloads"),
+  user: path.join(compilationPath, "./arduino/storage/user"),
+};
 
 const execCli = (config) => {
   if (!config) throw new Error("argument cannot be blank");
@@ -39,6 +45,8 @@ module.exports = {
   arduinoCommand,
   compileFilePath,
   downloadPackedLibPath,
+  packedLibInstallFileFlag,
   cliConfigFile,
+  arduinoDirectories,
   execCli,
 };

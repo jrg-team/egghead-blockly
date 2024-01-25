@@ -41,4 +41,5 @@ module.exports = {
     return execCli({command: `upload -b ${upload_arg} --port ${port.label} ${compileFilePath}`, json: true})
   },
   "arduino.code.copy": async (_, code) => clipboard.writeText(code),
+  "arduino.core.list": async () => execCli({command: `core list`, json: true})
 };

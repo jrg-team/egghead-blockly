@@ -479,9 +479,37 @@
   background-color: #e9eff0;
 }
 
-.device-blocks .boards .board.selected .name {
+.device-blocks .boards .board.selected {
   color: #008084;
 }
+
+.device-blocks .boards .board.uninstalled {
+  position: relative;
+  color: #999 !important;
+}
+.device-blocks .boards .board.uninstalled img {
+  filter: blur(2px)  grayscale(0.7);
+}
+
+.device-blocks .boards .board.uninstalled::after {
+  content: "正在初始化配置\A请稍候";
+  white-space: pre-line;
+  text-align: center;
+  position: absolute;
+  color: #008084;
+  box-shadow: 0 0 3px 2px currentColor;
+  font-size: 14px;
+  font-weight: bold;
+  left: 0;
+  top: 35%;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: #e9eff0;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
 
 .device-blocks .boards .board img {
   max-width: 80px;

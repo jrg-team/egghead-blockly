@@ -209,7 +209,7 @@
           <div class="device-blocks">
             <div class="boards">
               <template x-for="board in $store.devices.boards">
-                <div class="board" :class="$store.devices.isSelected('board', board) ? 'selected' : ''"
+                <div class="board" :class="`${$store.devices.isSelected('board', board) ? 'selected' : ''} ${$store.devices.installPlatform.includes(board.platform) ? '' : 'uninstalled'}`"
                   @click="$store.devices.select('board', board)">
                   <img x-bind:src="board.picture" />
                   <div class="name" x-text="board.name"></div>

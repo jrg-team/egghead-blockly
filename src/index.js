@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const arduinoApi = require("./native-tools/arduino");
 const { SerialPort } = require("serialport");
-const { refreshCliConfigFile, updateCliCore, updateCliPlatform } = require('./native-tools/cli')
+const { refreshCliConfigFile, updateCliPlatform, checkLib } = require('./native-tools/cli')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -88,7 +88,7 @@ const execApi = () => {
 
 const initArduinoCli = async () => {
   refreshCliConfigFile()
-  await updateCliCore()
+  await checkLib({mode: 'packed'})
   await updateCliPlatform()
   console.log('✨ Arduino Cli init done')
 }

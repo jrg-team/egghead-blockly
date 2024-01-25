@@ -165,3 +165,7 @@ function openMonitor() {
   }
   window.arduinoApi["serial.monitor.open"](deviceStore.selected.port.label)
 }
+
+function getInstalledPlatforms() {
+  return window.arduinoApi["arduino.core.list"]().then(list => list.map(i => i.id))
+}

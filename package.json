@@ -6,10 +6,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=development electron-forge start",
+    "build:pre": "NODE_ENV=development node scripts/pre-build.js",
     "lib:check": "NODE_ENV=development node scripts/lib-check.js",
-    "prepackage": "npm run lib:check",
+    "prepackage": "npm run build:pre",
     "package": "electron-forge package",
-    "premake": "npm run lib:check",
+    "premake": "npm run build:pre",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
