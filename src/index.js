@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const arduinoApi = require("./native-tools/arduino");
 const { SerialPort } = require("serialport");
+const { refreshCliConfigFile, updateCliCore, updateCliPlatform } = require('./native-tools/cli')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -18,6 +19,7 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, "./preload/preload-index.js"),
     },
+    icon: path.join(__dirname, "./media/app-icon.png"),
   });
 
   // and load the index.html of the app.
@@ -34,6 +36,7 @@ const createTermWindow = (event, portLabel) => {
     webPreferences: {
       preload: path.join(__dirname, "./preload/preload-monitor.js"),
     },
+    icon: path.join(__dirname, "./media/app-icon.png"),
   });
 
   serialPort = new SerialPort({
@@ -83,11 +86,19 @@ const execApi = () => {
   });
 };
 
+const initArduinoCli = async () => {
+  refreshCliConfigFile()
+  await updateCliCore()
+  await updateCliPlatform()
+  console.log('✨ Arduino Cli init done')
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
   execApi();
+  initArduinoCli();
   createWindow();
 });
 

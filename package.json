@@ -1,12 +1,15 @@
 {
   "name": "egghead-blockly",
-  "productName": "egghead-blockly",
+  "productName": "蛋头实验室blockly",
   "version": "1.0.0",
   "description": "蛋头实验室 - Blockly拖拽编程",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "NODE_ENV=development electron-forge start",
+    "lib:check": "NODE_ENV=development node scripts/lib-check.js",
+    "prepackage": "npm run lib:check",
     "package": "electron-forge package",
+    "premake": "npm run lib:check",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
@@ -19,7 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "serialport": "^12.0.0"
+    "serialport": "^12.0.0",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.2.0",

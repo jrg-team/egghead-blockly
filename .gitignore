@@ -90,3 +90,6 @@ typings/
 
 # Electron-Forge
 out/
+
+compilation/arduino/storage/
+compilation/arduino/packed-libraries.zip

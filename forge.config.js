@@ -1,29 +1,42 @@
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: './src/media/app-icon',
+    extraResource: [
+      './compilation/bin',
+      './compilation/arduino',
+    ]
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        iconUrl: 'https://sciteen.oss-cn-hangzhou.aliyuncs.com/app-icon.ico',
+        // The ICO file to use as the icon for the generated Setup.exe
+        setupIcon: './src/media/app-icon.ico'
+      },
     },
     {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
+      config: {
+        icon: './src/media/app-icon.png'
+      }
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
+      config: {
+        options: {
+          icon: './src/media/app-icon.png'
+        }
+      },
     },
     {
       name: '@electron-forge/maker-dmg',
       config: {
-        format: 'ULFO'
+        format: 'ULFO',
+        icon: './src/media/app-icon.icns'
       }
     }
   ],
