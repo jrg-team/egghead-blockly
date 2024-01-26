@@ -3,7 +3,7 @@
   <block type="base_setup_loop" id="bbu,Ycm|oN%wsL77H?Kr" x="64" y="65">
     <statement name="DO">
       <block type="buzzer_init" id="y`([hmAAywp[-nk2t/=v">
-        <field name="PIN">D5</field>
+        <field name="PIN">5</field>
         <next>
           <block type="buzzer_music_custom" id="xe_VxUGPhkLJpftUVb^^">
             <value name="rtttl_melody">

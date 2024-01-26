@@ -38,7 +38,7 @@
               <block type="math_arithmetic" id="t=RxJlp06^fzsx!kviz8">
                 <field name="OP">ADD</field>
                 <value name="A">
-                  <block type="potentiometer_ranger_sensor" id="aL}#Yw~+3I|x#gC|9n8{">
+                  <block type="potentiometer_ranger_sensor2" id="aL}#Yw~+3I|x#gC|9n8{">
                     <field name="OUTPUT_VALUE">0</field>
                     <value name="PIN_POTENTIOMETER">
                       <shadow type="analog_pin" id="5KOdcL:vA||Lz}Ij8MC6">

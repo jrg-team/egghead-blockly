@@ -20,3 +20,7 @@ select, input {
 .color-font {
   color: #016D70;
 }
+
+.warning-font {
+  color: #faad14;
+}

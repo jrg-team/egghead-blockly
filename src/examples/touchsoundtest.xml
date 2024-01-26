@@ -14,7 +14,7 @@
           <block type="serial_print" id="*p,J5gA%qN5eNaA|1w$m">
             <value name="CONTENT">
               <shadow type="text" id="4@S!lvG7`NR1Qc:_r$7q">
-                <field name="TEXT">Sound sensor reading:</field>
+                <field name="TEXT">声音传感器读取到:</field>
               </shadow>
             </value>
             <next>
@@ -31,7 +31,7 @@
                   <block type="serial_print" id="Nm02vL.4.O9TId0j;+}!">
                     <value name="CONTENT">
                       <shadow type="text" id="p(rp4SK/[oNAx+Z^RT0S">
-                        <field name="TEXT">     Touch sensor reading:</field>
+                        <field name="TEXT">触摸传感器读取到:</field>
                       </shadow>
                     </value>
                     <next>

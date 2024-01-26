@@ -10,7 +10,7 @@
         <next>
           <block type="variables_const" id="Mg8P`RQ5Vs0{x;Py`fX@">
             <field name="VAR">frame</field>
-            <field name="VARIABLE_SETTYPE_TYPE">SHORT_NUMBER</field>
+            <field name="VARIABLE_SETTYPE_TYPE">NUMBER</field>
             <value name="VAL_CONST">
               <block type="math_number" id="W3^hyj7,.`,!se8n/GVW">
                 <field name="NUM">100</field>

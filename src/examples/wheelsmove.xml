@@ -3,8 +3,8 @@
   <block type="base_setup_loop" id="d/kFQk~hi]cLsuWB3[Ok" x="-332" y="70">
     <statement name="DO">
       <block type="servo_2wheels_init" id="YBE6V6E[kn#0LBwiKzDJ">
-        <field name="PINL">D8</field>
-        <field name="PINR">D4</field>
+        <field name="PINL">8</field>
+        <field name="PINR">4</field>
       </block>
     </statement>
     <statement name="LOOP">

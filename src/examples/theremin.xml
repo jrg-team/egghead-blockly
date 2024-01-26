@@ -8,7 +8,7 @@
         <field name="PIN_ECHO">4</field>
         <next>
           <block type="buzzer_init" id="|#8/wzOER{^=2QfK|SnL">
-            <field name="PIN">D5</field>
+            <field name="PIN">5</field>
           </block>
         </next>
       </block>

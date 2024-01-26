@@ -4,7 +4,7 @@
     {"source_url": "RTTL.xml","source_text": "03 | 🎼 铃声音效 |   ","visible": true},
     {"source_url": "wheelsmove.xml","source_text": "04 | 🚗 轮子移动 |","visible": true},
     {"source_url": "wheelsavoid.xml","source_text": "05 | 🚗 轮子避障 |","visible": true},
-    {"source_url": "serialdistance.xml","source_text": "06 | 📏 串口测距 |  ","visible": true },
+    {"source_url": "serialdistance.xml","source_text": "06 | 📏 超声波测距 |  ","visible": true },
     {"source_url": "theremin.xml","source_text": "07 | 🎹 电子琴 |   ","visible": true},
     {"source_url": "neopixel.xml", "source_text": "08 | 🌈 彩色LED |","visible": true },
     {"source_url": "neopixelfunctions.xml", "source_text": "09 | 🌈 RGB LED 函数  |","visible": true },

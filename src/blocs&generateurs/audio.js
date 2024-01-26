@@ -76,7 +76,7 @@ Blockly.Blocks["play"]={init:function(){
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour("#FF63BB");
-    this.setTooltip(Blockly.Msg.play_tooltip);
+    this.setTooltip('发出指定音高');
     this.setHelpUrl(Blockly.Msg.play_helpurl)}
 };
 

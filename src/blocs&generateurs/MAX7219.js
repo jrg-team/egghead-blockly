@@ -25,7 +25,7 @@ Blockly.Arduino['mouth_init'] = function(block) {
 
   var Orientation = this.getFieldValue('Orientation');
   Blockly.Arduino.includes_['otto_lib'] = '#include <Otto.h>\n'
-	+ 'Otto Otto;';
+	+ 'Otto Otto;\n';
   Blockly.Arduino.variables_['otto9_matrix'] = 'const char data[] = "VARIABLE#";\n'
   + 'unsigned long int matrix;';
   Blockly.Arduino.definitions_['otto9_matrix_def'] = '#define CLK '+pin_clk+' // Clock pin\n'

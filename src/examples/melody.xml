@@ -3,7 +3,7 @@
   <block type="base_setup_loop" id="sYpp.M_hPV=wn]G[Y!?e" x="-172" y="110">
     <statement name="DO">
       <block type="buzzer_init" id="alRJTf.h_seJUa!z|l8|">
-        <field name="PIN">D5</field>
+        <field name="PIN">5</field>
       </block>
     </statement>
     <statement name="LOOP">

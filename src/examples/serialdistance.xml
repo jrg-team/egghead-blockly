@@ -16,7 +16,7 @@
       <block type="serial_print" id="*p,J5gA%qN5eNaA|1w$m">
         <value name="CONTENT">
           <shadow type="text" id="4@S!lvG7`NR1Qc:_r$7q">
-            <field name="TEXT">Ultrasonic sensor reading:</field>
+            <field name="TEXT">超声波传感器读取到：</field>
           </shadow>
         </value>
         <next>

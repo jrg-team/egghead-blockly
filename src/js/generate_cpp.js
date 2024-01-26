@@ -241,6 +241,7 @@ Blockly.Arduino.scrub_ = function(block, code) {
   return commentCode + code + nextCode;
 };
 Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
+  console.log(typeBlockly)
   switch (typeBlockly.typeId) {
     case Blockly.Types.SHORT_NUMBER.typeId:
       return 'byte';

@@ -16,7 +16,7 @@
       <block type="variables_set" id="H6gGejn{ZV(Le`wrj(P2">
         <field name="VAR">sensor</field>
         <value name="VALUE">
-          <block type="potentiometer_ranger_sensor" id="7uM,-U`rRD,_ST+P:L#,">
+          <block type="potentiometer_ranger_sensor2" id="7uM,-U`rRD,_ST+P:L#,">
             <field name="OUTPUT_VALUE">1</field>
             <value name="PIN_POTENTIOMETER">
               <shadow type="analog_pin" id="@iNtKCLZb7X5HCRk3/Ey">

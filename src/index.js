@@ -1,8 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+const prompt = require("electron-prompt");
 const path = require("path");
 const arduinoApi = require("./native-tools/arduino");
 const { SerialPort } = require("serialport");
-const { refreshCliConfigFile, updateCliPlatform, checkLib } = require('./native-tools/cli')
+const {
+  refreshCliConfigFile,
+  updateCliPlatform,
+  checkLib,
+} = require("./native-tools/cli");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -27,6 +32,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
+
+  return mainWindow;
 };
 
 const createTermWindow = (event, portLabel) => {
@@ -57,7 +64,7 @@ const createTermWindow = (event, portLabel) => {
   });
 };
 
-const execApi = () => {
+const registerArduinoApi = () => {
   Object.entries(arduinoApi).forEach(([key, callback]) => {
     ipcMain.handle(key, callback);
   });
@@ -87,19 +94,39 @@ const execApi = () => {
 };
 
 const initArduinoCli = async () => {
-  refreshCliConfigFile()
-  await checkLib({mode: 'packed'})
-  await updateCliPlatform()
-  console.log('✨ Arduino Cli init done')
-}
+  refreshCliConfigFile();
+  await checkLib({ mode: "packed" });
+  await updateCliPlatform();
+  console.log("✨ Arduino Cli init done");
+};
+
+const registerCommunicationApi = (targetWindow) => {
+  ipcMain.handle("blockly.variable.name", (_, { title, defaultValue }) => {
+    return prompt(
+      {
+        title,
+        label: title,
+        value: defaultValue,
+        type: "input",
+        resizable: true,
+        buttonLabels: {
+          ok: '确认',
+          cancel: '取消'
+        }
+      },
+      targetWindow
+    );
+  });
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-  execApi();
+  registerArduinoApi();
   initArduinoCli();
-  createWindow();
+  const mainWindow = createWindow();
+  registerCommunicationApi(mainWindow);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -119,5 +146,14 @@ app.on("activate", () => {
   }
 });
 
+app.on('open-file', (event, filePath) => {
+  // 在这里处理打开的文件
+  console.log('Opened file via open-file event:', filePath);
+  // 在此处调用您的应用程序窗口创建函数，并将文件路径传递给窗口
+  // createWindow(filePath);
+});
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+app.setAsDefaultProtocolClient('蛋头实验室blockly', process.execPath, ['--open-file']);

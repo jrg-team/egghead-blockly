@@ -181,7 +181,7 @@
                             </value>
                             <next>
                               <block type="eyes_face" id="~|TAR+saU{(Dd.=3q{WX">
-                                <field name="otto9_eyes_choice">happy</field>
+                                <field name="otto9_eyes_choice">happy1_bmp</field>
                                 <next>
                                   <block type="base_delay" id="U*5zzU+V|MSc#w6.|TYa">
                                     <field name="unite">s</field>
@@ -269,7 +269,7 @@
                                                                                             </value>
                                                                                             <next>
                                                                                               <block type="eyes_face" id="[]3izbU)M$?!t)MDk|/E">
-                                                                                                <field name="otto9_eyes_choice">freetful1_bmp</field>
+                                                                                                <field name="otto9_eyes_choice">fretful1_bmp</field>
                                                                                                 <next>
                                                                                                   <block type="base_delay" id="h,TVtTE(U,)cjJ]?_Q*v">
                                                                                                     <field name="unite">s</field>

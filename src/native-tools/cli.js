@@ -13,7 +13,6 @@ const {
 const libs = require("./lib-configs");
 const { exec } = require("child_process");
 
-
 const refreshCliConfigFile = () => {
   const fileContent = fs.readFileSync(cliConfigFile, "utf8");
   const yamlObj = YAML.parse(fileContent);
@@ -111,8 +110,10 @@ const installPackedLib = async () => {
       resolve(stdout);
     });
   });
-  fs.writeFileSync(packedLibInstallFileFlag, 'installed')
-  fs.rmSync(downloadPackedLibPath, { force: true });
+  fs.writeFileSync(packedLibInstallFileFlag, "installed");
+  setTimeout(() => {
+    fs.rmSync(downloadPackedLibPath, { force: true });
+  }, 10000);
 };
 
 const checkLib = (config = { mode: "packed" }) => {

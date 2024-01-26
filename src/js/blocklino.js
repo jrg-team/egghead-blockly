@@ -43,6 +43,7 @@ BlocklyDuino.init = function () {
     BlocklyDuino.renderArduinoCodePreview
   );
   BlocklyDuino.loadFile();
+  BlocklyDuino.listenDrop();
   window.addEventListener("unload", BlocklyDuino.backupBlocks, false);
 };
 BlocklyDuino.loadFile = function () {
@@ -113,9 +114,11 @@ BlocklyDuino.renderArduinoCodePreview = function () {
   var prog = window.localStorage.prog;
   if (prog != "python") {
     let code = Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace);
+    console.log(code);
     if (window.js_beautify) {
       code = js_beautify(code, BlocklyDuino.codeBeautifyConfig);
     }
+    console.log(code);
     $("#pre_previewArduino").text(code);
     code = $("#pre_previewArduino").html();
 
@@ -947,5 +950,36 @@ BlocklyDuino.saveXmlFile = function () {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+  }
+};
+
+BlocklyDuino.listenDrop = () => {
+  document.addEventListener("drop", (event) => {
+    event.preventDefault(); // 防止浏览器默认行为（例如打开文件）
+    event.stopPropagation(); // 防止事件冒泡
+    // 获取拖放的文件列表
+    const files = event.dataTransfer.files;
+    // 处理拖放的文件
+    handleDroppedFiles(files);
+  });
+
+  // 防止浏览器默认行为（例如打开文件）
+  document.addEventListener("dragover", (event) => {
+    event.preventDefault();
+  });
+
+  // 处理拖放的文件
+  function handleDroppedFiles(files) {
+    const acceptFile = files[0];
+    const { messageStore } = getStores();
+    if (!/\.bloc$/.test(acceptFile.name)) {
+      return messageStore.add({
+        type: "warning",
+        title: "文件格式有误",
+        content: `仅支持后缀名为 <strong class="warning-font">.bloc</strong> 的文件，请检查文件格式`,
+        duration: 0,
+      });
+    }
+    BlocklyDuino.load({ target: { files } });
   }
 };

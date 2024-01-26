@@ -742,7 +742,6 @@ Blockly.Blocks["eeprom_read"]={init:function(){
         this.setTooltip(Blockly.Msg.EEPROM_read_tips)}
 };
 /* communication */
-/*
 Blockly.Blocks["soft_init"]={init:function(){
 		var card=window.localStorage.card;
         this.setColour("#0060aa");

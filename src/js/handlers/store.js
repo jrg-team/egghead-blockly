@@ -18,8 +18,9 @@ document.addEventListener("alpine:init", () => {
       a.category > b.category ? 1 : -1
     ),
     init() {
+      this.readPrevSelect({board: true})
       listDevices({ showModal: false }).then(() => {
-        this.readPrevSelect();
+        this.readPrevSelect({port: true});
       });
       this.updatePlatformStatus();
     },
@@ -32,14 +33,14 @@ document.addEventListener("alpine:init", () => {
         }
       });
     },
-    readPrevSelect() {
+    readPrevSelect(config = {board: true, port: true}) {
       const prevBoard = localStorage.getItem(`selectedBoard`);
-      if (prevBoard) {
+      if (config.board && prevBoard) {
         const board = this.boards.find((b) => b.name === prevBoard);
         board && this.select("board", board);
       }
       const prevPort = localStorage.getItem(`selectedPort`);
-      if (prevPort) {
+      if (config.port && prevPort) {
         const portDetail = this.ports.find((b) => b.port.label === prevPort);
         portDetail && this.select("port", portDetail.port);
       }

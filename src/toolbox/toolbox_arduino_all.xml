@@ -1787,6 +1787,7 @@
 
   <category name="CAT_AUDIO" colour="#FF63BB">
     <category name="CAT_BUZZER" colour="#FF63BB">
+      <block type="buzzer_init"><field name="PIN">13</field></block>
       <block type="RTTTL_music">
         <field name="PIN_BUZZER">13</field>
       </block>

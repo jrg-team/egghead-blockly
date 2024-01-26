@@ -41,7 +41,7 @@ Blockly.Arduino['otto_configuration'] = function(block) {
   var PIN_Buzzer= block.getFieldValue('PIN_Buzzer');
 
   Blockly.Arduino.includes_['otto_lib'] = '#include <Otto.h>\n'
-	+ 'Otto Otto;';
+	+ 'Otto Otto;\n';
 
   Blockly.Arduino.definitions_['otto_legs'] = '#define LeftLeg '+ PIN_YL +' // 左腿对应的引脚, 第一个舵机参数\n'
  	+ '#define RightLeg '+ PIN_YR +' // 右腿对应的引脚，第二个舵机参数\n'

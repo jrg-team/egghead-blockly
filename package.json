@@ -20,8 +20,18 @@
     "name": "Big7lion",
     "email": "biglion77@outlook.com"
   },
+  "build": {
+    "appId": "com.egghead.blockly"
+  },
+  "fileAssociations": {
+    "ext": "bloc",
+    "name": "BLOC file",
+    "role": "Editor",
+    "description": "蛋头实验室Blockly 文件"
+   },
   "license": "MIT",
   "dependencies": {
+    "electron-prompt": "^1.7.0",
     "electron-squirrel-startup": "^1.0.0",
     "serialport": "^12.0.0",
     "yaml": "^2.3.4"
