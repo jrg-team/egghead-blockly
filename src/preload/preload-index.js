@@ -21,3 +21,7 @@ contextBridge.exposeInMainWorld("communication", {
   "blockly.variable.name": (title, defaultValue) =>
     ipcRenderer.invoke("blockly.variable.name", { title, defaultValue }),
 });
+
+ipcRenderer.on('file.bloc.load', (_, file) => {
+  contextBridge.exposeInMainWorld("AssociateFile", file);
+})

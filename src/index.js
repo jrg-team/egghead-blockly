@@ -3,6 +3,7 @@ const prompt = require("electron-prompt");
 const path = require("path");
 const arduinoApi = require("./native-tools/arduino");
 const { SerialPort } = require("serialport");
+const fs = require("fs");
 const {
   refreshCliConfigFile,
   updateCliPlatform,
@@ -16,7 +17,7 @@ if (require("electron-squirrel-startup")) {
 
 let serialPort = null;
 
-const createWindow = () => {
+const createWindow = (config = {}) => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1400,
@@ -32,7 +33,9 @@ const createWindow = () => {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
-
+  if (config.file) {
+    mainWindow.webContents.send('file.bloc.load', config.file)
+  }
   return mainWindow;
 };
 
@@ -110,22 +113,48 @@ const registerCommunicationApi = (targetWindow) => {
         type: "input",
         resizable: true,
         buttonLabels: {
-          ok: '确认',
-          cancel: '取消'
-        }
+          ok: "确认",
+          cancel: "取消",
+        },
       },
       targetWindow
     );
   });
 };
 
+const fetchOpenedFile = async () => {
+  const filePaths = process.argv.slice(-1);
+  if (!filePaths || !filePaths.length) return null;
+  const targetFilePath = filePaths[0];
+  return parseBLOCFile(targetFilePath)
+};
+
+const parseBLOCFile = async (filepath) => {
+  if (!/\.bloc$/.test(filepath)) {
+    return null;
+  }
+  try {
+    const fileName = path.parse(filepath).name;
+    const content = fs.readFileSync(filepath, { encoding: "utf8" });
+    console.log(`✅ specific BLOC file loaded`);
+    return {
+      name: fileName,
+      content,
+    };
+  } catch (e) {
+    console.log(`⚠️ cannot read specific BLOC file`)
+    return null;
+  }
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", () => {
+app.on("ready", async () => {
   registerArduinoApi();
   initArduinoCli();
-  const mainWindow = createWindow();
+  const openedFile = await fetchOpenedFile();
+  const mainWindow = createWindow({ file: openedFile });
   registerCommunicationApi(mainWindow);
 });
 
@@ -146,14 +175,12 @@ app.on("activate", () => {
   }
 });
 
-app.on('open-file', (event, filePath) => {
+app.on("open-file",  async (event, filePath) => {
   // 在这里处理打开的文件
-  console.log('Opened file via open-file event:', filePath);
-  // 在此处调用您的应用程序窗口创建函数，并将文件路径传递给窗口
-  // createWindow(filePath);
+  console.log("Opened file via open-file event:", filePath);
+  const openedFile =  await parseBLOCFile(filePath);
+  if (openedFile) createWindow({ file: openedFile })
 });
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-
-app.setAsDefaultProtocolClient('蛋头实验室blockly', process.execPath, ['--open-file']);

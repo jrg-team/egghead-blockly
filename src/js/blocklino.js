@@ -43,6 +43,7 @@ BlocklyDuino.init = function () {
     BlocklyDuino.renderArduinoCodePreview
   );
   BlocklyDuino.loadFile();
+  BlocklyDuino.loadFromAssociateFile();
   BlocklyDuino.listenDrop();
   window.addEventListener("unload", BlocklyDuino.backupBlocks, false);
 };
@@ -114,11 +115,9 @@ BlocklyDuino.renderArduinoCodePreview = function () {
   var prog = window.localStorage.prog;
   if (prog != "python") {
     let code = Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace);
-    console.log(code);
     if (window.js_beautify) {
       code = js_beautify(code, BlocklyDuino.codeBeautifyConfig);
     }
-    console.log(code);
     $("#pre_previewArduino").text(code);
     code = $("#pre_previewArduino").html();
 
@@ -204,18 +203,22 @@ BlocklyDuino.load = function (event) {
         });
         editor.setValue(target.result, 1);
       }
-      try {
-        var xml = Blockly.Xml.textToDom(target.result);
-      } catch (e) {
-        alert(MSG["xmlError"] + "\n" + e);
-        return;
-      }
-      BlocklyDuino.workspace.clear();
-      Blockly.Xml.domToWorkspace(xml, BlocklyDuino.workspace);
-      BlocklyDuino.workspace.render();
+      BlocklyDuino.renderFromText(target.result);
     }
   };
   reader.readAsText(files[0]);
+};
+BlocklyDuino.renderFromText = (text) => {
+  try {
+    var xml = Blockly.Xml.textToDom(text);
+  } catch (e) {
+    alert(MSG["xmlError"] + "\n" + e);
+    return;
+  }
+  BlocklyDuino.workspace.clear();
+  Blockly.Xml.domToWorkspace(xml, BlocklyDuino.workspace);
+  BlocklyDuino.workspace.render();
+  BlocklyDuino.workspace.scrollCenter();
 };
 BlocklyDuino.backupBlocks = function () {
   if (typeof Blockly != "undefined" && window.localStorage) {
@@ -960,26 +963,32 @@ BlocklyDuino.listenDrop = () => {
     // 获取拖放的文件列表
     const files = event.dataTransfer.files;
     // 处理拖放的文件
-    handleDroppedFiles(files);
+    BlocklyDuino.handleDroppedFiles(files);
   });
 
   // 防止浏览器默认行为（例如打开文件）
   document.addEventListener("dragover", (event) => {
     event.preventDefault();
   });
-
-  // 处理拖放的文件
-  function handleDroppedFiles(files) {
-    const acceptFile = files[0];
-    const { messageStore } = getStores();
-    if (!/\.bloc$/.test(acceptFile.name)) {
-      return messageStore.add({
-        type: "warning",
-        title: "文件格式有误",
-        content: `仅支持后缀名为 <strong class="warning-font">.bloc</strong> 的文件，请检查文件格式`,
-        duration: 0,
-      });
-    }
-    BlocklyDuino.load({ target: { files } });
+};
+BlocklyDuino.handleDroppedFiles = (files) => {
+  const acceptFile = files[0];
+  const { messageStore } = getStores();
+  if (!/\.bloc$/.test(acceptFile.name)) {
+    return messageStore.add({
+      type: "warning",
+      title: "文件格式有误",
+      content: `仅支持后缀名为 <strong class="warning-font">.bloc</strong> 的文件，请检查文件格式`,
+      duration: 0,
+    });
   }
+  BlocklyDuino.load({ target: { files } });
+};
+BlocklyDuino.loadFromAssociateFile = () => {
+  if (!window.AssociateFile) return;
+  console.log(window.AssociateFile);
+  const { name, content } = window.AssociateFile;
+
+  document.getElementById("title-project-name").value = name;
+  BlocklyDuino.renderFromText(content);
 };
