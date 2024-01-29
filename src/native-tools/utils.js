@@ -32,6 +32,7 @@ const execCli = (config) => {
   }`;
   return new Promise((resolve) => {
     exec(cmd, { cwd: arduinoBasePath }, (error, stdout, stderr) => {
+      console.log(stdout)
       if (error) console.log(error);
       resolve(json ? JSON.parse(stdout) : stdout);
     });

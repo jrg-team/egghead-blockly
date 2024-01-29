@@ -65,9 +65,18 @@ const libBatchInstall = (installList) => {
   }, Promise.resolve());
 };
 
-const updateCliCore = () => {
+const updateCliCore = async (config = { useMirror: true }) => {
   console.log("🔥 updating core index");
-  return execCli({ command: `core update-index`, json: false });
+  await execCli({ command: `core update-index`, json: false });
+  if (config.useMirror) remapCoreIndexToOss();
+};
+
+const remapCoreIndexToOss = () => {
+  fs.cpSync(
+    path.join(arduinoBasePath, "./configuration/mirror_package_index.json"),
+    path.join(arduinoBasePath, "./storage/data/package_index.json"),
+    { force: true }
+  );
 };
 
 const updateCliPlatform = async () => {
@@ -86,7 +95,7 @@ const downloadPackedLibZip = () => {
     console.log(`👉 packed Libraries already downloaded`);
     return Promise.resolve();
   }
-  const cmd = `curl -o ${downloadPackedLibPath} https://sciteen.oss-cn-hangzhou.aliyuncs.com/blockly-packed-lib.zip`;
+  const cmd = `curl -o ${downloadPackedLibPath} https://otto-blockly.oss-cn-hangzhou.aliyuncs.com/download/blockly-packed-lib.zip`;
   console.log(`👉 downloading packed Libraries zip file`);
   return new Promise((resolve, reject) => {
     exec(cmd, { cwd: arduinoBasePath }, (error, stdout, stderr) => {
