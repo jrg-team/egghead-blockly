@@ -6,7 +6,6 @@ const {
 const fs = require("fs");
 
 const rmDir = (path) => {
-
   if(fs.existsSync(path)) fs.rmdirSync(path, { force: true, recursive: true });
 }
 const cleanCache = () => {

@@ -94,3 +94,7 @@ out/
 compilation/arduino/storage/
 compilation/arduino/packed-libraries.zip
 compilation/arduino/lib-installed
+
+/oss_config
+/ossutil_output
+/.ossutil_checkpoint

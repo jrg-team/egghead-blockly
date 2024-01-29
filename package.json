@@ -14,7 +14,8 @@
     "premake": "npm run build:pre",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "upload:platform:tools": "cross-env NODE_ENV=development node scripts/download-platform-tools.js",
+    "deploy:web": "ossutil cp -r -f -c ./oss_config \"src/\" \"oss://otto-blockly/\" --jobs 100"
   },
   "keywords": [
     "blockly",
