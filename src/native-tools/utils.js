@@ -6,13 +6,16 @@ const compilationPath = isDevelopment
   ? path.join(__dirname, "../../compilation")
   : process.resourcesPath;
 const arduinoBasePath = path.join(compilationPath, "./arduino");
-const arduinoCommand = path.join(compilationPath, "./bin/arduino-cli");
+const arduinoCommand = path.join(
+  compilationPath,
+  process.platform === "win32" ? "./bin/arduino-cli.exe" : "./bin/arduino-cli"
+);
 const compileFilePath = path.join(arduinoBasePath, "./sketch/sketch.ino");
 const downloadPackedLibPath = path.join(
   arduinoBasePath,
   "packed-libraries.zip"
 );
-const packedLibInstallFileFlag = path.join(arduinoBasePath, 'lib-installed')
+const packedLibInstallFileFlag = path.join(arduinoBasePath, "lib-installed");
 const cliConfigFile = path.join(
   compilationPath,
   "./arduino/configuration/arduino-cli.yaml"

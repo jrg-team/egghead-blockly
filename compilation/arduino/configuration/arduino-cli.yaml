@@ -7,9 +7,9 @@ build_cache:
 daemon:
   port: "50051"
 directories:
-  data: /Users/biglion/LionDisk/projects/ee/blockly-app/compilation/arduino/storage/data
-  downloads: /Users/biglion/LionDisk/projects/ee/blockly-app/compilation/arduino/storage/downloads
-  user: /Users/biglion/LionDisk/projects/ee/blockly-app/compilation/arduino/storage/user
+  data: D:\3-gitproject\egghead-blockly\compilation\arduino\storage\data
+  downloads: D:\3-gitproject\egghead-blockly\compilation\arduino\storage\downloads
+  user: D:\3-gitproject\egghead-blockly\compilation\arduino\storage\user
 library:
   enable_unsafe_install: true
 logging:
