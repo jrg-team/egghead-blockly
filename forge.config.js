@@ -48,8 +48,8 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'me',
-          name: 'awesome-thing'
+          owner: 'jrg-team',
+          name: 'egghead-blockly'
         },
         prerelease: true
       }
