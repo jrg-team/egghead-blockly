@@ -10,9 +10,9 @@ const rmDir = (path) => {
 }
 const cleanCache = () => {
   console.log('🧽 cleaning arduino-cli caches to reduce package size')
-  fs.rmSync(packedLibInstallFileFlag, { force: true });
+  // fs.rmSync(packedLibInstallFileFlag, { force: true });
   rmDir(arduinoDirectories.data)
-  rmDir(arduinoDirectories.user)
+  // rmDir(arduinoDirectories.user)
   rmDir(arduinoDirectories.downloads)
 };
 

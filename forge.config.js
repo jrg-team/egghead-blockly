@@ -6,13 +6,13 @@ module.exports = {
   },
   rebuildConfig: {},
   makers: [
-    {
-      name: '@electron-forge/maker-wix',
-      config: {
-        language: 1033,
-        manufacturer: '蛋头实验室 Egghead Lab'
-      }
-    },
+    // {
+    //   name: '@electron-forge/maker-wix',
+    //   config: {
+    //     language: 1033,
+    //     manufacturer: '蛋头实验室 Egghead Lab'
+    //   }
+    // },
     {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin", "win32"],
