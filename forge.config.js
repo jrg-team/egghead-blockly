@@ -7,16 +7,15 @@ module.exports = {
   rebuildConfig: {},
   makers: [
     {
-      name: "@electron-forge/maker-squirrel",
+      name: '@electron-forge/maker-wix',
       config: {
-        iconUrl: "https://sciteen.oss-cn-hangzhou.aliyuncs.com/app-icon.ico",
-        // The ICO file to use as the icon for the generated Setup.exe
-        setupIcon: "./src/media/app-icon.ico",
-      },
+        language: 1033,
+        manufacturer: '蛋头实验室 Egghead Lab'
+      }
     },
     {
       name: "@electron-forge/maker-zip",
-      platforms: ["darwin"],
+      platforms: ["darwin", "win32"],
       config: {
         icon: "./src/media/app-icon.png",
       },

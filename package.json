@@ -40,6 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@electron-forge/maker-wix": "^7.2.0",
     "cross-env": "^7.0.3",
     "electron-prompt": "^1.7.0",
     "electron-squirrel-startup": "^1.0.0",
@@ -55,6 +56,7 @@
     "@electron-forge/maker-squirrel": "^7.2.0",
     "@electron-forge/maker-zip": "^7.2.0",
     "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
-    "electron": "28.1.4"
+    "electron": "28.1.4",
+    "electron-wix-msi": "^5.0.0"
   }
 }
