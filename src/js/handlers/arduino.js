@@ -111,7 +111,7 @@ function uploadCode() {
   })
     .then(
       (r) => {
-        if (r.success) {
+        if (r.success || !r.stderr) {
           messageStore.add({
             type: "success",
             title: "烧录成功",

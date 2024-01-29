@@ -30,7 +30,6 @@ module.exports = {
     verifyCode({ code, board }),
   "arduino.code.upload": async (_, { code, board, port }) => {
     const verifyResult = await verifyCode({ code, board });
-    console.log(verifyResult);
     if (!verifyResult.success)
       return Promise.resolve({
         ...verifyResult,
