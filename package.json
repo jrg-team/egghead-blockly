@@ -16,7 +16,14 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-  "keywords": [],
+  "keywords": [
+    "blockly",
+    "蛋头实验室",
+    "拖拽编程",
+    "Arduino",
+    "ESP32",
+    "App"
+  ],
   "author": {
     "name": "Big7lion",
     "email": "biglion77@outlook.com"
@@ -29,12 +36,13 @@
     "name": "BLOC file",
     "role": "Editor",
     "description": "蛋头实验室Blockly 文件"
-   },
+  },
   "license": "MIT",
   "dependencies": {
     "electron-prompt": "^1.7.0",
     "electron-squirrel-startup": "^1.0.0",
     "serialport": "^12.0.0",
+    "update-electron-app": "^3.0.0",
     "yaml": "^2.3.4"
   },
   "devDependencies": {

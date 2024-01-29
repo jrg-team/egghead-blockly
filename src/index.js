@@ -9,6 +9,8 @@ const {
   updateCliPlatform,
   checkLib,
 } = require("./native-tools/cli");
+// const { updateElectronApp } = require('update-electron-app');
+// updateElectronApp()
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
