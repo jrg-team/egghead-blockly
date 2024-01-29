@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const prompt = require("electron-prompt");
 const path = require("path");
 const arduinoApi = require("./native-tools/arduino");
@@ -16,6 +16,8 @@ const {
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
+
+Menu.setApplicationMenu(null)
 
 let serialPort = null;
 
