@@ -68,7 +68,10 @@ const libBatchInstall = (installList) => {
 const updateCliCore = async (config = { useMirror: true }) => {
   console.log("🔥 updating core index");
   await execCli({ command: `core update-index`, json: false });
-  if (config.useMirror) remapCoreIndexToOss();
+  if (config.useMirror) {
+    console.log("🔥 use oss mirror")
+    remapCoreIndexToOss();
+  }
 };
 
 const remapCoreIndexToOss = () => {

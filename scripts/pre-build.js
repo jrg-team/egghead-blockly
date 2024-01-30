@@ -1,4 +1,4 @@
-const { checkLib } = require("../src/native-tools/cli");
+const { checkLib, refreshCliConfigFile } = require("../src/native-tools/cli");
 const {
   packedLibInstallFileFlag,
   arduinoDirectories,
@@ -18,6 +18,7 @@ const cleanCache = () => {
 
 const main = () => {
   cleanCache();
+  refreshCliConfigFile()
   checkLib({ mode: "packed" });
 };
 
