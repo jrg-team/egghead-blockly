@@ -15,3 +15,14 @@ Big thanks to previous projects that made this possible:
 - `make`: 生成安装包（macos和windows要分别执行）
 - `upload:platform:tools`: 提前将需要科学上网才能下载的esp32的工具链同步到oss（相当于做了下镜像）
 - `deploy:web`: 部署网页版内容
+
+## Todo list
+
+- [x] 自动检查与安装库依赖
+- [x] 自建esp32工具链镜像
+- [x] 完成基本的功能
+- [ ] macos dmg 应用可信签名
+- [ ] windows 安装包（需证书？可能直接用zip包就行）
+- [ ] esp32引脚映射优化
+- [ ] 应用下载中心网页
+- [ ] 自动版本升级
