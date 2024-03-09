@@ -1,3 +1,6 @@
+const path = require('path')
+const fs = require('node:fs/promises');
+
 module.exports = {
   packagerConfig: {
     asar: true,
@@ -60,4 +63,17 @@ module.exports = {
     role: "Editor",
     description: "蛋头实验室Blockly 文件",
   },
+  hooks: {
+    packageAfterPrune: async (_config, buildPath) => {
+      const gypPath = path.join(
+        buildPath,
+        'node_modules',
+        '@serialport',
+        'bindings-cpp',
+        'build',
+        'node_gyp_bins'
+      );
+      await fs.rm(gypPath, {recursive: true, force: true});
+   }
+ }
 };
